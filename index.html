@@ -1,0 +1,89 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>Find Muh Shades</title>
+
+  <meta name="description" content="Get the dominant color or color palette from an image.">
+  <meta name="author" content="Lokesh Dhakar">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla%7CMontserrat:700">
+  <link rel="stylesheet" href="css/screen.css">
+  <link rel="stylesheet" href="css/instagram.css">
+
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1 class="logo">Find My Shades</h1>
+      <p class="lead">
+        See what colors appear most often in your Instagram feed.
+      </p>
+
+    </div>
+  </header>
+
+  <section id="initial-section">
+    <div class="container">
+      <a id="load-instagram" class="button" href="https://api.instagram.com/oauth/authorize/?client_id=1a630d1517b840c9bb4e714cf2637d7c&redirect_uri=http://localhost/colormuck/&response_type=token">Link your Instagram account</a>
+      <progress id="load-progress" value="0" max="100" style="display:none;">
+    </div>
+  </section>
+
+  <section id="instagram" style="display:none;">
+    <div class="container">
+      <h2>Instagram feed</h2>
+      <img id="instagram-photo" src="" height="320" width="320" />
+      <div class="image-section {{class}}">
+        <div class="image-wrap">
+          <button class="run-functions-button" style="display:none;">
+            <span class="no-touch-label">Go</span>
+          </button>
+          <canvas id="ig-canvas" style="display:none;"></canvas>
+          <img src="" id="mirror" class="target-image"  />
+        </div>
+        <div class="color-thief-output"></div>
+      </div>
+      <a href="#" id="downloadImage">Download image</a>
+    </div>
+  </section>
+
+
+  <!-- Mustache templates -->
+
+  <script id="color-thief-output-template" type="text/x-mustache">
+    <div class="function get-color">
+      <h3 class="function-title">Your Instagram shades from <span class="timea">the last month</span></h3>
+      <div class="swatches">
+        <div class="swatch" style="background-color: rgb({{color.0}}, {{color.1}}, {{color.2}})">
+          <p class="swatch-values" style="color: {{single.textColor}}">{{single.name}} ({{single.hex}})</p>
+        </div>
+          {{#hex}}
+            <div class="swatch" style="background-color: rgb({{r}}, {{g}}, {{b}})">
+              <p class="swatch-values" style="color: {{textColor}}">{{name}} ({{hex}})</p>
+            </div>
+          {{/hex}}
+        </div>
+      </div>
+      <div class="function-code">
+        <code>colorThief.getColor(image):{{elapsedTimeForGetColor}}ms</code>
+        <code>colorThief.getPalette(image):{{elapsedTimeForGetPalette}}ms</code>
+      </div>
+    </div>
+  </script>
+
+
+  <script src="js/color-thief.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/mustache.js"></script>
+  <script src="js/demo.js"></script>
+  <script src="js/instagram.js"></script>
+  <script src="js/ntc.js"></script>
+  <script src="js/timeago.js"></script>
+
+</body>
+</html>
